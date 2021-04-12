@@ -89,3 +89,113 @@ rl.on('close', () => {
 
 //33:54~
 //https://www.youtube.com/watch?v=RLtyhwFtXQA
+
+// * Working with the file System Module
+const fs = require('fs');
+
+//*---ファイルの作成
+// fs.writeFile('example.txt', 'This is an example', (err) => {
+//   if (err) console.log(err);
+//   else {
+//     console.log('File successfully created');
+//     fs.readFile('example.txt', 'utf8', (err, file) => {
+//       if (err) console.log(err);
+//       else console.log(file);
+//     });
+//   }
+// });
+
+//*---ファイルexample.txtの名前を変更する
+// fs.rename('example.txt', 'example2.txt', (err) => {
+//   if (err) console.log(err);
+//   else console.log('successfully renamed the file');
+// });
+
+//*---appendFileメソッド
+// fs.appendFile('example2.txt', 'Some data being appended', (err) => {
+//   if (err) console.log(err);
+//   else console.log('Successfully appended data to file');
+// });
+
+//*---unlinkメソッド ファイルを削除
+// fs.unlink('example2.txt', (err) => {
+//   if (err) console.log(err);
+//   else console.log('Successfully deleted the file.');
+// });
+
+//*---ディレクトリを作成 mkdirメソッド
+// const fs127 = require('fs');
+// fs127.mkdir('tutorial', (err) => {
+//   if (err) console.log(err);
+//   else {
+//     console.log('folder successfully created');
+//   }
+// });
+
+//*---ディレクトリを削除 rmdirメソッド
+// const fs135 = require('fs');
+// fs135.mkdir('tutorial2', (err) => {
+//   if (err) console.log(err);
+//   else {
+//     fs.rmdir('tutorial2', (err) => {
+//       if (err) console.log(err);
+//       else {
+//         console.log('Successfully deleted the folder');
+//       }
+//     });
+//   }
+// });
+
+//*---ディレクトリ、テキストファイルを作成
+const fs149 = require('fs');
+fs149.mkdir('tutorial', (err) => {
+  if (err) console.log(err);
+  else {
+    fs149.writeFile('./tutorial/example.txt', '123', (err) => {
+      if (err) console.log(err);
+      else {
+        console.log('Successfully created file');
+      }
+    });
+  }
+});
+
+//*---上で作成したディレクトリ内のテキストファイルを削除
+fs149.unlink('./tutorial/example.txt', (err) => {
+  if (err) console.log(err);
+  else {
+    console.log('Deleted folder');
+  }
+});
+
+//*---上で作成したディレクトリを削除
+fs149.rmdir('tutorial', (err) => {
+  if (err) console.log(err);
+  else {
+    console.log('Deleted folder');
+  }
+});
+
+//記述例
+// const fs179 = require('fs');
+// fs179.readdir('example', (err, files) => {
+//   if (err) console.log(err);
+//   else {
+//     for (let file of files) {
+//       fs179.unlink('./example/' + file, (err) => {
+//         if (err) console.log(err);
+//         else {
+//           console.log('Successfully deleted file');
+//         }
+//       });
+//     }
+//   }
+// });
+
+//*---CreateReadStreamメソッド、writeStreamメソッド
+// const fs197 = require('fs');
+// const readStream = fs197.createReadStream('example.txt', 'utf8');
+// const writeStream = fs197.createWriteStream('example2.txt');
+// readStream.on('data', (chunk) => {
+//   writeStream.write(chunk);
+// });
