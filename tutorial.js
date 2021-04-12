@@ -147,34 +147,34 @@ const fs = require('fs');
 // });
 
 //*---ディレクトリ、テキストファイルを作成
-const fs149 = require('fs');
-fs149.mkdir('tutorial', (err) => {
-  if (err) console.log(err);
-  else {
-    fs149.writeFile('./tutorial/example.txt', '123', (err) => {
-      if (err) console.log(err);
-      else {
-        console.log('Successfully created file');
-      }
-    });
-  }
-});
+// const fs149 = require('fs');
+// fs149.mkdir('tutorial', (err) => {
+//   if (err) console.log(err);
+//   else {
+//     fs149.writeFile('./tutorial/example.txt', '123', (err) => {
+//       if (err) console.log(err);
+//       else {
+//         console.log('Successfully created file');
+//       }
+//     });
+//   }
+// });
 
 //*---上で作成したディレクトリ内のテキストファイルを削除
-fs149.unlink('./tutorial/example.txt', (err) => {
-  if (err) console.log(err);
-  else {
-    console.log('Deleted folder');
-  }
-});
+// fs149.unlink('./tutorial/example.txt', (err) => {
+//   if (err) console.log(err);
+//   else {
+//     console.log('Deleted folder');
+//   }
+// });
 
 //*---上で作成したディレクトリを削除
-fs149.rmdir('tutorial', (err) => {
-  if (err) console.log(err);
-  else {
-    console.log('Deleted folder');
-  }
-});
+// fs149.rmdir('tutorial', (err) => {
+//   if (err) console.log(err);
+//   else {
+//     console.log('Deleted folder');
+//   }
+// });
 
 //記述例
 // const fs179 = require('fs');
@@ -199,3 +199,18 @@ fs149.rmdir('tutorial', (err) => {
 // readStream.on('data', (chunk) => {
 //   writeStream.write(chunk);
 // });
+
+// const fs203 = require('fs');
+// fs203.readFile('./largefile.txt', (err, file) => {
+//   if (err) console.log(err);
+//   else {
+//     console.log(file);
+//   }
+// });
+
+const fs211 = require('fs');
+const zlib = require('zlib');
+const gzip = zlib.createGzip();
+const readStream = fs211.createReadStream('./example.txt', 'utf8');
+const writeStream = fs211.createWriteStream('example2.txt');
+readStream.pipe(gzip).pipe(writeStream);
